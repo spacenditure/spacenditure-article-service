@@ -1,0 +1,43 @@
+{
+  "name": "spacenditure-article-service",
+  "version": "1.0.0",
+  "description": "Spacenditure Article Service",
+  "main": "build/server.js",
+  "author": "Navneet Lal Gupta",
+  "license": "MIT",
+  "scripts": {
+    "watch": "tsc -w",
+    "build": "tsc",
+    "start": "nodemon",
+    "start-prod": "npm run build && node build/server.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.0",
+    "@types/mongoose": "^5.5.9",
+    "@types/node": "^12.6.8",
+    "@types/swagger-ui-express": "^4.1.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.6",
+    "swagger-ui-express": "4.1.0",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacenditure/spacenditure-article-service.git"
+  },
+  "keywords": [
+    "Express",
+    "TypeScript",
+    "MVC",
+    "MongoDB"
+  ],
+  "bugs": {
+    "url": "https://github.com/spacenditure/spacenditure-article-service/issues"
+  },
+  "homepage": "https://github.com/spacenditure/spacenditure-article-service#readme"
+}

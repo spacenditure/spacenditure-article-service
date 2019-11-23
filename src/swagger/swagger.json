@@ -1,0 +1,405 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Spacenditure Article Service",
+    "description": "This service will be required to interact with articles created by user.",
+    "contact": {
+      "email": "navneetlalg@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://github.com/spacenditure/spacenditure-article-service/blob/master/LICENSE"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about this service",
+    "url": "https://github.com/spacenditure/boiler-plate-server/wiki"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/article",
+      "description": "Development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Article",
+      "description": "Access to article created by a user"
+    }
+  ],
+  "paths": {
+    "/article": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Get all the articles",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number to query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "description": "Number of articles per page",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "page": {
+                      "type": "number",
+                      "description": "Current page number starting from 0",
+                      "example": 0
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Article"
+                      }
+                    },
+                    "total_pages": {
+                      "type": "number",
+                      "description": "Total number of pages based on perPage set by user",
+                      "example": 6
+                    },
+                    "total_results": {
+                      "type": "number",
+                      "description": "Total number of articles available",
+                      "example": 57
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 404",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "No article found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Create a new article",
+        "requestBody": {
+          "description": "Article object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Article"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "201 Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Mongo ObjectId",
+                          "example": "5dd93965e6ecfd20910fa6af"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/Article"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 500",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/article/{articleId}": {
+      "get": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Find article by ID",
+        "description": "Returns a single article",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "ID of article to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 404",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "Article not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Update article by id",
+        "description": "Returns success response",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Id of article to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204 No Content"
+          },
+          "404": {
+            "description": "404 Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 404",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "No matching article found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 500",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Article"
+        ],
+        "summary": "Delete article by ID",
+        "description": "Returns success response",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Id of article to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK"
+          },
+          "404": {
+            "description": "404 Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "description": "HTTP Status code 404",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message from server",
+                      "example": "No matching article found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Article": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the article",
+            "example": "Promises in JavaScript"
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Id of author",
+                "example": "05b971ce-0b41-11ea-8d71-362b9e155667"
+              },
+              "userName": {
+                "type": "string",
+                "description": "username of the author",
+                "example": "navneet78"
+              },
+              "fullName": {
+                "type": "string",
+                "description": "Name of the author",
+                "example": "Navneet Lal Gupta"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "Avatar URL of author",
+                "example": "https://avatar-url.com/navneet78"
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "tags assigned to the article",
+              "example": "js"
+            }
+          },
+          "content": {
+            "type": "string",
+            "description": "The content of article.",
+            "example": null
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of the article (when it was generated)",
+            "example": "2019-11-20T02:47:29.505Z"
+          }
+        }
+      }
+    }
+  }
+}
