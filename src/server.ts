@@ -5,13 +5,9 @@
  */
 
 import 'dotenv/config';
-import App from './app';
-import PostsController from './controllers/article/article.controller';
+import App from './controllers';
 
 const app = new App(
-  [
-    new PostsController(),
-  ],
   5000,
 );
  

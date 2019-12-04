@@ -11,7 +11,7 @@ import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Article from './article.interface';
 import articleModel from './article.model';
-import HttpException from '../../exceptions/HttpException';
+import HttpException from '../../../exceptions/HttpException';
 
 class ArticleController {
   public path = '/article';
@@ -39,6 +39,7 @@ class ArticleController {
    * @param next 
    */
   getAllArticles = (request: Request, response: Response, next: NextFunction) => {
+    console.log("hello")
     let perPage = 10;
     let page = 0;
     if(parseInt(request.query.page)) page = parseInt(request.query.page)
