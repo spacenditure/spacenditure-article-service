@@ -2042,10 +2042,10 @@ swagger-ui-dist@^3.18.1:
   resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.24.3.tgz#99754d11b0ddd314a1a50db850acb415e4b0a0c6"
   integrity sha512-kB8qobP42Xazaym7sD9g5mZuRL4416VIIYZMqPEIskkzKqbPLQGEiHA3ga31bdzyzFLgr6Z797+6X1Am6zYpbg==
 
-swagger-ui-express@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.2.tgz#fa4ca5337bce207c760a0b9340348159ebf8ffa4"
-  integrity sha512-bVT16qj6WdNlEKFkSLOoTeGuqEm2lfOFRq6mVHAx+viA/ikORE+n4CS3WpVcYmQzM4HE6+DUFgAWcMRBJNpjcw==
+swagger-ui-express@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.0.tgz#ac2bc884a714d763e725394b6ac77bc284e4d3e5"
+  integrity sha512-sCP7SxIfWr8DAK46RZXaplJIe+1h0cOFIrUw+Jx8vSstlppe7sNR8mFOyDlBwVsqAx6K2BAhKnK88Hkkj28pqw==
   dependencies:
     swagger-ui-dist "^3.18.1"
 
@@ -2125,11 +2125,9 @@ typescript@^3.5.3:
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
 undefsafe@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.2.tgz#225f6b9e0337663e0d8e7cfd686fc2836ccace76"
-  integrity sha1-Il9rngM3Zj4Njnz9aG/Cg2zKznY=
-  dependencies:
-    debug "^2.2.0"
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.5.tgz#38733b9327bdcd226db889fb723a6efd162e6e2c"
+  integrity sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==
 
 union-value@^1.0.0:
   version "1.0.1"
